@@ -1,5 +1,145 @@
-template-repository (1.0-1) unstable; urgency=medium
+pycares (4.3.0-2) unstable; urgency=medium
 
-  * Initial release
+  * Add d/p/0003-Allow-connection-refused-badresolv.conf.patch to address
+    inappropriate test failure on Debian CI
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Scott Kitterman <scott@kitterman.com>  Mon, 13 Mar 2023 05:42:48 -0400
+
+pycares (4.3.0-1) unstable; urgency=medium
+
+  [ Stefano Rivera ]
+  * Drop c-ares 1.18 patch, superseded upstream.
+
+  [ Scott Kitterman ]
+  * New upstream release to align pycares with Debian's c-ares version
+  * Point debian/watch at pypi, since that's where the tarballs are now
+  * Update autopkgtest to run tests per upstream documentation
+  * Add netbase to Suggests and d/test/control test depends
+  * Update tests so Debian CI is recognized as a CI environment which causes
+    tests which are not expected to work in a CI environment to be skipped
+  * Bump standards-version to 4.6.2 without further change
+  * Don't run tests during build, needs network
+  * Add pybuild-plugin-pyproject to build-depends, since it's the future
+
+ -- Scott Kitterman <scott@kitterman.com>  Mon, 13 Mar 2023 00:28:02 -0400
+
+pycares (4.1.2-2) unstable; urgency=medium
+
+  * Team Upload.
+  * Revert: Run test suite at build time.
+    This needs Internet access, of course.
+
+ -- Stefano Rivera <stefanor@debian.org>  Sun, 14 Nov 2021 20:06:43 -0800
+
+pycares (4.1.2-1) unstable; urgency=medium
+
+  [ Stefano Rivera ]
+  * Team Upload.
+  * New upstream release.
+    - Drops bundled c-ares.
+  * Bump copyright years.
+  * Bump Standards-Version to 4.6.0, no changes needed.
+  * Run autopkgtest outside the build directory, to run against the installed
+    module.
+  * Build against system c-ares, now that upstream is no longer carrying
+    patches to it.
+  * Declare needs-internet in the autopgktest, it relies on foreign DNS
+    servers.
+  * Patch: Support c-ares 1.18.
+  * Run test suite at build time.
+  * Drop -Wl,--as-needed, no longer needed explicitly.
+
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+ -- Stefano Rivera <stefanor@debian.org>  Sun, 14 Nov 2021 19:21:18 -0800
+
+pycares (3.1.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 10 Jan 2020 01:57:29 -0500
+
+pycares (3.1.0-4) unstable; urgency=medium
+
+  * Run dh_installdocs on all binaries also so debian/copyright is installed
+    in all packages (Closes: #948252)
+  * Update doc-base for current documentation location and package name
+
+ -- Scott Kitterman <scott@kitterman.com>  Sun, 05 Jan 2020 22:15:36 -0500
+
+pycares (3.1.0-3) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Scott Kitterman <scott@kitterman.com>  Sat, 21 Dec 2019 23:33:44 -0500
+
+pycares (3.1.0-2) experimental; urgency=medium
+
+  * Update autopkgtest depends
+  * Update debian/copyright
+  * d/rules: Use -indep overrides for doc build
+  * d/rules: Set --doc-main-package for dh_installdocs and dh_installexamples
+    so doc files are installed in /usr/share/doc/python3-pycares
+  * Delete obsolete debian/add-ons directory
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 20 Dec 2019 00:28:30 -0500
+
+pycares (3.1.0-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org.
+
+  [ Daniel Kahn Gillmor ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * ship examples in python-pycares-doc
+  * set Rules-Requires-Root: no
+  * drop unnecessary x-python3-version field
+  * move to DEP-14-style gbp branches
+  * standards-version: bump to 4.4.1 (no changes needed)
+  * update to dh 12
+  * run wrap-and-sort -ast
+  * d/watch: sort beta versions before released versions
+
+  [ Scott Kitterman ]
+  * Set maintainer to DPMT, add myself to uploaders (Closes: #945043)
+  * Add build-depends on python3-cffi and python3-idna for pycares 3+
+  * Manually add python3-idna to python3-pycares depends
+  * New upstream release (Closes: #918991)
+  * d/rules: simplify since we no longer need to manually regenerate
+    ares_config.h
+  * Add autopkgtest
+
+ -- Scott Kitterman <scott@kitterman.com>  Tue, 17 Dec 2019 00:42:01 -0500
+
+pycares (2.1.1-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Drop python2 support; Closes: #937402
+
+ -- Sandro Tosi <morph@debian.org>  Sat, 19 Oct 2019 18:23:40 -0400
+
+pycares (2.1.1-2) unstable; urgency=medium
+
+  * debian/rules, debian/add-ons/configure: use configure script from c-ares
+    to generate ares_config.h, necessary for building on any architecture.
+
+ -- Tanguy Ortolo <tanguy+debian@ortolo.eu>  Tue, 15 Nov 2016 23:23:37 +0100
+
+pycares (2.1.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches: remove fix-doc-build.patch which as been applied upstream.
+  * debian/watch: use substitutions to make it more generic, and do not use
+    uupdate automatically.
+
+ -- Tanguy Ortolo <tanguy+debian@ortolo.eu>  Sun, 09 Oct 2016 16:58:28 +0200
+
+pycares (2.1.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #835348)
+
+ -- Tanguy Ortolo <tanguy+debian@ortolo.eu>  Thu, 25 Aug 2016 15:39:48 +0200

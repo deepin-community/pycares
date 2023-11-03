@@ -1,0 +1,21 @@
+From: Scott Kitterman <scott@kitterman.com>
+Date: Mon, 13 Mar 2023 00:23:52 -0400
+Subject: Fix expected nodes
+
+---
+ tests/test_all.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/test_all.py b/tests/test_all.py
+index 12fd8a7..d6b5fe6 100755
+--- a/tests/test_all.py
++++ b/tests/test_all.py
+@@ -89,7 +89,7 @@ class DNSTest(unittest.TestCase):
+         self.wait()
+         self.assertNoError(self.errorno)
+         self.assertEqual(type(self.result), pycares.ares_addrinfo_result)
+-        self.assertEqual(len(self.result.nodes), 1)
++        self.assertTrue(len(self.result.nodes) > 0)
+         node = self.result.nodes[0]
+         self.assertEqual(node.addr[0], b'127.0.0.1')
+         self.assertEqual(node.addr[1], 80)

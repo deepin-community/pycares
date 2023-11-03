@@ -1,0 +1,3 @@
+0001-Add-DEBCI-to-CI-environments-in-tests.patch
+0002-Fix-expected-nodes.patch
+0003-Allow-connection-refused-badresolv.conf.patch
