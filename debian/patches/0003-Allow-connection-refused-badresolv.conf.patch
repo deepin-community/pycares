@@ -1,0 +1,22 @@
+From: Scott Kitterman <scott@kitterman.com>
+Date: Mon, 13 Mar 2023 05:40:52 -0400
+Subject: Allow connection refused badresolv.conf
+
+---
+ tests/test_all.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/tests/test_all.py b/tests/test_all.py
+index d6b5fe6..a70da1e 100755
+--- a/tests/test_all.py
++++ b/tests/test_all.py
+@@ -603,6 +603,9 @@ class DNSTest(unittest.TestCase):
+         self.channel.query('google.com', pycares.QUERY_TYPE_A, cb)
+         self.wait()
+         self.assertEqual(self.result, None)
++        # Connection refused also indicates we used badresolv.conf
++        if self.errorno == pycares.errno.ARES_ECONNREFUSED:
++            self.errorno = pycares.errno.ARES_ETIMEOUT
+         self.assertEqual(self.errorno, pycares.errno.ARES_ETIMEOUT)
+ 
+     def test_errorcode_dict(self):
