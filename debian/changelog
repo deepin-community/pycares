@@ -1,3 +1,9 @@
+pycares (4.3.0-2deepin1) unstable; urgency=medium
+
+  * No source change upload against python 3.12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Mon, 08 Jul 2024 09:53:49 +0200
+
 pycares (4.3.0-2) unstable; urgency=medium
 
   * Add d/p/0003-Allow-connection-refused-badresolv.conf.patch to address
