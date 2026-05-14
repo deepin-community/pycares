@@ -1,3 +1,11 @@
+pycares (4.3.0-2deepin2) unstable; urgency=medium
+
+  * CVE-2025-48945: Fix use-after-free when Channel is garbage collected with
+    pending DNS queries. Add __del__ method to safely cancel pending queries
+    before channel destruction.
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 15 May 2026 00:00:00 +0800
+
 pycares (4.3.0-2deepin1) unstable; urgency=medium
 
   * No source change upload against python 3.12.
